@@ -1,4 +1,4 @@
-package br.com.zupacademy.joao.casadocodigo.validator.generico;
+package br.com.zupacademy.joao.casadocodigo.validator.campounico;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueValue {
 
-    String message() default "{br.com.zupacademy.joao.beanvalidation.uniquevalue}";
+    String message() default "O valor do campo deve ser único";
 
     Class<?>[] groups() default { };
 

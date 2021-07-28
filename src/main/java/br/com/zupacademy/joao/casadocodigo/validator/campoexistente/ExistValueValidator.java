@@ -1,6 +1,5 @@
-package br.com.zupacademy.joao.casadocodigo.validator.generico;
+package br.com.zupacademy.joao.casadocodigo.validator.campoexistente;
 
-import br.com.zupacademy.joao.casadocodigo.validator.generico.UniqueValue;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -10,16 +9,16 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object> {
+public class ExistValueValidator implements ConstraintValidator<ExistValue, Object> {
 
     private String domainAttribute;
     private Class<?> klass;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     @Override
-    public void initialize(UniqueValue constraintAnnotation) {
+    public void initialize(ExistValue constraintAnnotation) {
         domainAttribute = constraintAnnotation.fieldName();
         klass = constraintAnnotation.domainClass();
     }
@@ -30,8 +29,6 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
         query.setParameter("value", value);
         List<?> list = query.getResultList();
 
-        Assert.state(list.size() <= 1, "Foi encontrado mais de um "+klass+" com o atributo duplicado: "+value);
-
-        return list.isEmpty();
+        return !list.isEmpty();
     }
 }

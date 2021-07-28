@@ -1,7 +1,7 @@
 package br.com.zupacademy.joao.casadocodigo.controller.dto.request;
 
 import br.com.zupacademy.joao.casadocodigo.model.Categoria;
-import br.com.zupacademy.joao.casadocodigo.validator.generico.UniqueValue;
+import br.com.zupacademy.joao.casadocodigo.validator.campounico.UniqueValue;
 
 import javax.validation.constraints.NotBlank;
 
