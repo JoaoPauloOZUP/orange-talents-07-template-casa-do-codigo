@@ -20,5 +20,4 @@ public class ErroAutorResponse {
     public String getErro() {
         return erro;
     }
-
 }

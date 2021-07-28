@@ -18,10 +18,10 @@ import javax.validation.Valid;
 public class AutorController {
 
     @Autowired
-    EmailDuplicadoValidator emailDuplicadoValidator;
+    AutorRepository autorRepository;
 
     @Autowired
-    AutorRepository autorRepository;
+    EmailDuplicadoValidator emailDuplicadoValidator;
 
     @InitBinder
     public void init(WebDataBinder binder) {
