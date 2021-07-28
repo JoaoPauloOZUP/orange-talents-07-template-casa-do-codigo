@@ -20,14 +20,6 @@ public class CategoriaController {
     @Autowired
     CategoriaRepository categoriaRepository;
 
-    @Autowired
-    CategoriaDuplicada categoriaDuplicada;
-
-    @InitBinder
-    public void init(WebDataBinder binder) {
-        binder.addValidators(categoriaDuplicada);
-    }
-
     @PostMapping
     @Transactional
     public ResponseEntity<CategoriaResponse> cadastrar(@RequestBody @Valid CategoriaRequest categoriaRequest) {

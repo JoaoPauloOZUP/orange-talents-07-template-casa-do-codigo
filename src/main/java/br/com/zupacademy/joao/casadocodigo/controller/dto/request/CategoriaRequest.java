@@ -1,12 +1,14 @@
 package br.com.zupacademy.joao.casadocodigo.controller.dto.request;
 
 import br.com.zupacademy.joao.casadocodigo.model.Categoria;
+import br.com.zupacademy.joao.casadocodigo.validator.generico.UniqueValue;
 
 import javax.validation.constraints.NotBlank;
 
 public class CategoriaRequest {
 
     @NotBlank
+    @UniqueValue(domainClass = Categoria.class, fieldName = "nome")
     private String nome;
 
     @Deprecated
