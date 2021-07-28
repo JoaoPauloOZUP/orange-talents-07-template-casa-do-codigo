@@ -1,6 +1,6 @@
 package br.com.zupacademy.joao.casadocodigo.config.excptionhandler;
 
-import br.com.zupacademy.joao.casadocodigo.config.excptionhandler.dto.response.ErroAutorResponse;
+import br.com.zupacademy.joao.casadocodigo.config.excptionhandler.dto.response.ErroResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -22,15 +22,13 @@ public class ErroValidacaoHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroAutorResponse> handle(MethodArgumentNotValidException exception) {
-        List<ErroAutorResponse> response = new ArrayList<>();
-
+    public List<ErroResponse> handle(MethodArgumentNotValidException exception) {
+        List<ErroResponse> response = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 
         fieldErrors.forEach(erro -> {
-            String mensagem = messageSource.getMessage(erro, LocaleContextHolder.getLocale());
-            ErroAutorResponse erroAutorResponse = new ErroAutorResponse(erro.getField(), mensagem);
-            response.add(erroAutorResponse);
+            ErroResponse erroResponse = new ErroResponse(erro.getField(), messageSource.getMessage(erro, LocaleContextHolder.getLocale()));
+            response.add(erroResponse);
         });
 
         return response;

@@ -1,14 +1,14 @@
 package br.com.zupacademy.joao.casadocodigo.config.excptionhandler.dto.response;
 
-public class ErroAutorResponse {
+public class ErroResponse {
 
     private String campo;
 
     private String erro;
 
-    public ErroAutorResponse() { }
+    public ErroResponse() { }
 
-    public ErroAutorResponse(String campo, String erro) {
+    public ErroResponse(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }
