@@ -25,31 +25,12 @@ public class Autor {
 
     private Instant dataCadastro = Instant.now();
 
+    @Deprecated
     public Autor() { }
 
     public Autor(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Length(max = 400) String descricao) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public Instant getDataCadastro() {
-        return dataCadastro;
     }
 }

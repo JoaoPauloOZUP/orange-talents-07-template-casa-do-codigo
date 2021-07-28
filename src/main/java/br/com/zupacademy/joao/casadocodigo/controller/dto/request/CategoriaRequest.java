@@ -9,6 +9,13 @@ public class CategoriaRequest {
     @NotBlank
     private String nome;
 
+    @Deprecated
+    public CategoriaRequest () { }
+
+    public CategoriaRequest(@NotBlank String nome) {
+        this.nome = nome;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -20,4 +27,5 @@ public class CategoriaRequest {
     public Categoria toModel() {
         return new Categoria(this.nome);
     }
+
 }

@@ -7,6 +7,9 @@ public class CategoriaResponse {
 
     private String nome;
 
+    @Deprecated
+    public CategoriaResponse () { }
+
     public CategoriaResponse(CategoriaRequest categoriaRequest) {
         this.nome = categoriaRequest.getNome();
     }

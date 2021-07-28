@@ -1,5 +1,6 @@
 package br.com.zupacademy.joao.casadocodigo.controller.dto.response;
 
+import br.com.zupacademy.joao.casadocodigo.controller.dto.request.AutorRequest;
 import br.com.zupacademy.joao.casadocodigo.model.Autor;
 
 import java.time.Instant;
@@ -12,15 +13,13 @@ public class AutorResponse {
 
     private String descricao;
 
-    private Instant dataCadastro;
-
+    @Deprecated
     public AutorResponse() { }
 
-    public AutorResponse(Autor autor) {
-        this.nome = autor.getNome();
-        this.email = autor.getEmail();
-        this.descricao = autor.getDescricao();
-        this.dataCadastro = autor.getDataCadastro();
+    public AutorResponse(AutorRequest autorRequest) {
+        this.nome = autorRequest.getNome();
+        this.email = autorRequest.getEmail();
+        this.descricao = autorRequest.getDescricao();
     }
 
     public String getNome() {
@@ -35,7 +34,4 @@ public class AutorResponse {
         return descricao;
     }
 
-    public Instant getDataCadastro() {
-        return dataCadastro;
-    }
 }

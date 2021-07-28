@@ -19,6 +19,7 @@ public class AutorRequest {
     @Length(max = 400)
     private String descricao;
 
+    @Deprecated
     public AutorRequest() { }
 
     public AutorRequest(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Length(max = 400) String descricao) {
