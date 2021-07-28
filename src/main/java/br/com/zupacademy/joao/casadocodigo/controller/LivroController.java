@@ -10,13 +10,11 @@ import br.com.zupacademy.joao.casadocodigo.repositoy.CategoriaRepository;
 import br.com.zupacademy.joao.casadocodigo.repositoy.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -41,6 +39,11 @@ public class LivroController {
         Livro livro = livroRequest.toModel(livroRepository, categoriaOPT.get(), autorOPT.get());
         livroRepository.save(livro);
 
-        return ResponseEntity.ok().body(new LivroResponse(livroRequest));
+        return ResponseEntity.ok().body(new LivroResponse(livro));
+    }
+
+    @GetMapping
+    public List<LivroResponse> listarLivros() {
+        return LivroResponse.convertModel(livroRepository.findAll());
     }
 }

@@ -3,61 +3,46 @@ package br.com.zupacademy.joao.casadocodigo.controller.dto.response;
 import br.com.zupacademy.joao.casadocodigo.controller.dto.request.LivroRequest;
 import br.com.zupacademy.joao.casadocodigo.model.Autor;
 import br.com.zupacademy.joao.casadocodigo.model.Categoria;
+import br.com.zupacademy.joao.casadocodigo.model.Livro;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class LivroResponse {
 
+    private Long id;
+
     private String titulo;
 
-    private String resumo;
+    @Deprecated
+    public  LivroResponse() { }
 
-    private String sumario;
+    public LivroResponse(Long id, String titulo) {
+        this.id = id;
+        this.titulo = titulo;
+    }
 
-    private Double preco;
+    public LivroResponse(Livro livro) {
+        this.id = livro.getId();
+        this.titulo = livro.getTitulo();
+    }
 
-    private Long quantidadePagina;
-
-    private String lsbn;
-
-    private Date dataPublicacao;
-
-
-    public LivroResponse(LivroRequest livroRequest) {
-        this.titulo = livroRequest.getTitulo();
-        this.resumo = livroRequest.getResumo();
-        this.sumario = livroRequest.getSumario();
-        this.preco = livroRequest.getPreco();
-        this.quantidadePagina = livroRequest.getQuantidadePagina();
-        this.lsbn = livroRequest.getLsbn();
-        this.dataPublicacao = livroRequest.getDataPublicacao();
+    public Long getId() {
+        return id;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public String getResumo() {
-        return resumo;
-    }
+    public static List<LivroResponse> convertModel(List<Livro> list) {
+        List<LivroResponse> livroResponseList = new ArrayList<>();
+        list.forEach(livro -> {
+            LivroResponse response = new LivroResponse(livro.getId(), livro.getTitulo());
+            livroResponseList.add(response);
+        });
 
-    public String getSumario() {
-        return sumario;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public Long getQuantidadePagina() {
-        return quantidadePagina;
-    }
-
-    public String getLsbn() {
-        return lsbn;
-    }
-
-    public Date getDataPublicacao() {
-        return dataPublicacao;
+        return livroResponseList;
     }
 }

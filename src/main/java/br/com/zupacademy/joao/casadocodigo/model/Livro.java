@@ -39,7 +39,16 @@ public class Livro {
     @Deprecated
     public Livro() { }
 
-    public Livro(@NotBlank String titulo, @NotBlank @Length(max = 500) String resumo, String sumario, @Min(20) Double preco, @Min(100) Long quantidadePagina, @NotBlank String lsbn, @Future Date dataPublicacao, @NotNull Categoria categoria, @NotNull Autor autor) {
+    public Livro(@NotBlank String titulo,
+                 @NotBlank @Length(max = 500) String resumo,
+                 String sumario,
+                 @Min(20) Double preco,
+                 @Min(100) Long quantidadePagina,
+                 @NotBlank String lsbn,
+                 @Future Date dataPublicacao,
+                 @NotNull Categoria categoria,
+                 @NotNull Autor autor) {
+
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
@@ -49,5 +58,13 @@ public class Livro {
         this.dataPublicacao = dataPublicacao;
         this.categoria = categoria;
         this.autor = autor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 }
