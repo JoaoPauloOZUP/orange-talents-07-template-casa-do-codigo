@@ -33,4 +33,12 @@ public class Autor {
         this.email = email;
         this.descricao = descricao;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

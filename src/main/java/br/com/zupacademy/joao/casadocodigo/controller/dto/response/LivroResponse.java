@@ -1,12 +1,8 @@
 package br.com.zupacademy.joao.casadocodigo.controller.dto.response;
 
-import br.com.zupacademy.joao.casadocodigo.controller.dto.request.LivroRequest;
-import br.com.zupacademy.joao.casadocodigo.model.Autor;
-import br.com.zupacademy.joao.casadocodigo.model.Categoria;
 import br.com.zupacademy.joao.casadocodigo.model.Livro;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class LivroResponse {

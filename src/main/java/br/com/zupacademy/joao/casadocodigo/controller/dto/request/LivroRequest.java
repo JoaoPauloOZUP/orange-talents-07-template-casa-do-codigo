@@ -9,10 +9,7 @@ import br.com.zupacademy.joao.casadocodigo.validator.campounico.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 public class LivroRequest {
@@ -25,26 +22,32 @@ public class LivroRequest {
     @Length(max = 500)
     private String resumo;
 
+    @NotBlank
     private String sumario;
 
     @Min(20)
+    @NotNull
     private Double preco;
 
     @Min(100)
+    @NotNull
     private Long quantidadePagina;
 
     @NotBlank
     @UniqueValue(domainClass = Livro.class, fieldName = "lsbn")
     private String lsbn;
 
+    @NotNull
     @Future
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date dataPublicacao;
 
+    @NotNull
     @Positive
     @ExistValue(domainClass = Categoria.class, fieldName = "id")
     private Long categoriaId;
 
+    @NotNull
     @Positive
     @ExistValue(domainClass = Autor.class, fieldName = "id")
     private Long autorId;

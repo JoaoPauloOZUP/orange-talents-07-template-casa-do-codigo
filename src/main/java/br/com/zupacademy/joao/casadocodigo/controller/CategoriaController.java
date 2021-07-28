@@ -26,7 +26,7 @@ public class CategoriaController {
         Categoria categoria = categoriaRequest.toModel();
         categoriaRepository.save(categoria);
 
-        return ResponseEntity.ok().body(new CategoriaResponse(categoriaRequest));
+        return ResponseEntity.ok().body(new CategoriaResponse(categoria));
     }
 
 }

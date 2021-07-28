@@ -26,6 +26,6 @@ public class AutorController {
         Autor autor = autorRequest.toModel();
         autorRepository.save(autor);
 
-        return ResponseEntity.ok().body(new AutorResponse(autorRequest));
+        return ResponseEntity.ok().body(new AutorResponse(autor));
     }
 }
