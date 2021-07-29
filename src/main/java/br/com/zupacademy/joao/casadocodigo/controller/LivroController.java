@@ -14,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,12 +44,18 @@ public class LivroController {
         Livro livro = livroRequest.toModel(livroRepository, categoriaOPT.get(), autorOPT.get());
         livroRepository.save(livro);
 
-        return ResponseEntity.ok().body(new LivroResponse(livro));
+        return ResponseEntity.ok(new LivroResponse(livro));
     }
 
     @GetMapping
     public List<LivroResponse> listarLivros() {
-        return LivroResponse.convertModel(livroRepository.findAll());
+        List<LivroResponse> list = new ArrayList<>();
+
+        livroRepository.findAll().forEach(livro -> {
+            list.add(new LivroResponse(livro));
+        });
+
+        return list;
     }
 
     @GetMapping("{id}")
@@ -57,11 +63,9 @@ public class LivroController {
         Optional<Livro> livroOPT = livroRepository.findById(id);
 
         if(livroOPT.isEmpty()) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        LivroDetalhadoReponse livroDetalhadoReponse = new LivroDetalhadoReponse(livroOPT.get());
-
-        return ResponseEntity.ok(livroDetalhadoReponse);
+        return ResponseEntity.ok(new LivroDetalhadoReponse(livroOPT.get()));
     }
 }

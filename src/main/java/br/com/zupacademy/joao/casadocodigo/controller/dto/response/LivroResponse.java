@@ -31,14 +31,4 @@ public class LivroResponse {
     public String getTitulo() {
         return titulo;
     }
-
-    public static List<LivroResponse> convertModel(List<Livro> list) {
-        List<LivroResponse> livroResponseList = new ArrayList<>();
-        list.forEach(livro -> {
-            LivroResponse response = new LivroResponse(livro.getId(), livro.getTitulo());
-            livroResponseList.add(response);
-        });
-
-        return livroResponseList;
-    }
 }
