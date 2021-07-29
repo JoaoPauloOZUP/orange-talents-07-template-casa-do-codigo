@@ -9,7 +9,6 @@ import br.com.zupacademy.joao.casadocodigo.model.Livro;
 import br.com.zupacademy.joao.casadocodigo.repositoy.AutorRepository;
 import br.com.zupacademy.joao.casadocodigo.repositoy.CategoriaRepository;
 import br.com.zupacademy.joao.casadocodigo.repositoy.LivroRepository;
-import br.com.zupacademy.joao.casadocodigo.validator.campoexistente.ExistValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

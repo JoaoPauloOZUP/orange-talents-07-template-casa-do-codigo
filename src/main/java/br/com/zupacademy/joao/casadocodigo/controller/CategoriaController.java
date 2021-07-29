@@ -4,10 +4,8 @@ import br.com.zupacademy.joao.casadocodigo.controller.dto.request.CategoriaReque
 import br.com.zupacademy.joao.casadocodigo.controller.dto.response.CategoriaResponse;
 import br.com.zupacademy.joao.casadocodigo.model.Categoria;
 import br.com.zupacademy.joao.casadocodigo.repositoy.CategoriaRepository;
-import br.com.zupacademy.joao.casadocodigo.validator.categoria.CategoriaDuplicada;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -26,7 +24,7 @@ public class CategoriaController {
         Categoria categoria = categoriaRequest.toModel();
         categoriaRepository.save(categoria);
 
-        return ResponseEntity.ok().body(new CategoriaResponse(categoria));
+        return ResponseEntity.ok(new CategoriaResponse(categoria));
     }
 
 }
