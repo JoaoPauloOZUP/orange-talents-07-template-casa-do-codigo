@@ -1,6 +1,7 @@
 package br.com.zupacademy.joao.casadocodigo.controller;
 
 import br.com.zupacademy.joao.casadocodigo.controller.dto.request.LivroRequest;
+import br.com.zupacademy.joao.casadocodigo.controller.dto.response.LivroDetalhadoReponse;
 import br.com.zupacademy.joao.casadocodigo.controller.dto.response.LivroResponse;
 import br.com.zupacademy.joao.casadocodigo.model.Autor;
 import br.com.zupacademy.joao.casadocodigo.model.Categoria;
@@ -8,10 +9,14 @@ import br.com.zupacademy.joao.casadocodigo.model.Livro;
 import br.com.zupacademy.joao.casadocodigo.repositoy.AutorRepository;
 import br.com.zupacademy.joao.casadocodigo.repositoy.CategoriaRepository;
 import br.com.zupacademy.joao.casadocodigo.repositoy.LivroRepository;
+import br.com.zupacademy.joao.casadocodigo.validator.campoexistente.ExistValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
@@ -45,5 +50,18 @@ public class LivroController {
     @GetMapping
     public List<LivroResponse> listarLivros() {
         return LivroResponse.convertModel(livroRepository.findAll());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<LivroDetalhadoReponse> livroDetalhado(@PathVariable Long id) {
+        Optional<Livro> livroOPT = livroRepository.findById(id);
+
+        if(livroOPT.isEmpty()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        LivroDetalhadoReponse livroDetalhadoReponse = new LivroDetalhadoReponse(livroOPT.get());
+
+        return ResponseEntity.ok(livroDetalhadoReponse);
     }
 }
