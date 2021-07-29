@@ -9,6 +9,7 @@ import br.com.zupacademy.joao.casadocodigo.validator.campounico.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.util.Date;
 
@@ -124,7 +125,9 @@ public class LivroRequest {
         this.autorId = autorId;
     }
 
-    public Livro toModel(LivroRepository livroRepository, Categoria categoria, Autor autor) {
+    public Livro toModel(EntityManager manager) {
+        Categoria categoria = manager.find(Categoria.class, this.categoriaId);
+        Autor autor = manager.find(Autor.class, this.autorId);
         return new Livro(this.titulo, this.resumo, this.sumario, this.preco, this.quantidadePagina, this.lsbn, this.dataPublicacao, categoria, autor);
     }
 }
