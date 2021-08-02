@@ -1,9 +1,7 @@
 package br.com.zupacademy.joao.casadocodigo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Pais {
@@ -13,6 +11,9 @@ public class Pais {
     private Long id;
 
     private String nome;
+
+    @OneToMany(mappedBy = "pais")
+    List<Estado> estados;
 
     @Deprecated
     public Pais() { }
@@ -27,5 +28,9 @@ public class Pais {
 
     public String getNome() {
         return nome;
+    }
+
+    public List<Estado> getEstados() {
+        return estados;
     }
 }
